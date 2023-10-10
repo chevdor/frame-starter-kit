@@ -1,0 +1,33 @@
+[package]
+name = "runtime"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+parity-scale-codec = { version = "3.0.0", default-features = false }
+scale-info = { version = "2.6.0", default-features = false }
+
+frame = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "kiz-frame-api", default-features = false, features = ["runtime"] }
+pallets = { path = "../pallets", default-features = false }
+
+# Pallets that we want to use
+pallet-sudo = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "kiz-frame-api", default-features = false }
+
+[build-dependencies]
+substrate-wasm-builder = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "kiz-frame-api", optional = true }
+
+[features]
+default = ["std"]
+std = [
+	"parity-scale-codec/std",
+	"scale-info/std",
+
+	"frame/std",
+	"pallets/std",
+
+	"pallet-sudo/std",
+
+	"substrate-wasm-builder",
+]
+
+
